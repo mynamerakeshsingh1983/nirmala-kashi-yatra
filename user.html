@@ -3,33 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Data Form</title>
+    <title>Submit User Data</title>
 </head>
 <body>
-    <form id="userForm">
+    <form id="userDataForm">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required>
 
         <label for="lastName">Last Name:</label>
         <input type="text" id="lastName" name="lastName" required>
 
-        <button type="button" onclick="saveUserData()">Submit</button>
+        <button type="button" onclick="submitUserData()">Submit</button>
     </form>
 
     <script>
-        function saveUserData() {
+        function submitUserData() {
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
-            const userData = `${firstName} ${lastName}`;
 
-            // Create a Blob with the user data
-            const blob = new Blob([userData], { type: 'text/plain' });
-
-            // Create a link to download the file
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'user_data.txt';
-            a.click();
+            // Make an HTTP POST request to your Google Apps Script web app URL
+            fetch('https://script.google.com/macros/s/AKfycbzAr2VA9xsX4sx4P1dUSx08kdO49qke_raxu2pUx767JehoMpU2d4gYEIjilPTZP-T3/exec', {
+                method: 'POST',
+                body: JSON.stringify({ firstName, lastName }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('User data submitted successfully!');
+                } else {
+                    alert('Error submitting user data. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         }
     </script>
 </body>
