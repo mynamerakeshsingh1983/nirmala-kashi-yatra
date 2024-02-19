@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data Form</title>
+</head>
+<body>
+    <form id="userForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+
+        <button type="button" onclick="saveUserData()">Submit</button>
+    </form>
+
+    <script>
+        function saveUserData() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const userData = `${firstName} ${lastName}`;
+
+            // Create a Blob with the user data
+            const blob = new Blob([userData], { type: 'text/plain' });
+
+            // Create a link to download the file
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'user_data.txt';
+            a.click();
+        }
+    </script>
+</body>
+</html>
