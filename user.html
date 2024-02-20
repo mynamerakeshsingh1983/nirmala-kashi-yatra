@@ -22,7 +22,7 @@
             const lastName = document.getElementById('lastName').value;
 
             // Make an HTTP POST request to your Google Apps Script web app URL
-            const response = await fetch('https://script.google.com/macros/s/AKfycbzAr2VA9xsX4sx4P1dUSx08kdO49qke_raxu2pUx767JehoMpU2d4gYEIjilPTZP-T3/exec', {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbx4eOe2yK9cT1YQy9aVi_wbKikW6BaaYr1BPxvES6098pEFn_WXLh4Xz7qdtH3DiZ97/exec', {
                 method: 'POST',
                 body: JSON.stringify({ firstName, lastName }),
                 headers: {
