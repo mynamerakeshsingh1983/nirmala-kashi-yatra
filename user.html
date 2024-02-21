@@ -4,11 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit User Data</title>
+    <style>
+      /* Optional: Add CSS to style the form */
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 20px;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
 </head>
 <body>
   <form id="myForm">
-    <input name="Email" id="emailInput" type="email" placeholder="Email" required>
-    <input name="Name" id="nameInput" type="text" placeholder="Name" required>
+    <label for="nameInput">Name:</label>
+    <input name="Name" id="nameInput" type="text" placeholder="Enter your name" required>
+    
+    <label for="emailInput">Email:</label>
+    <input name="Email" id="emailInput" type="email" placeholder="Enter your email" required>
+    
+    <label for="mobileInput">Mobile:</label>
+    <input name="Mobile" id="mobileInput" type="tel" placeholder="Enter your mobile number" required>
+    
     <button type="button" onclick="submitForm()">Send</button>
   </form>
 
