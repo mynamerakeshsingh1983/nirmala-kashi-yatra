@@ -6,12 +6,37 @@
     <title>Submit User Data</title>
 </head>
 <body>
-  <form 
-    method="POST" 
-    action="https://script.google.com/macros/s/AKfycbzQv6JBG0gflVHHzT0cFV6VEHiwc3lPoT0ddrioQRgYkzaPcyIPng_HiPQGBfkHtR7e/exec">
-    <input name="Email" type="email" placeholder="Email" required>
-    <input name="Name" type="text" placeholder="Name" required>
-    <button type="submit">Send</button>
+  <form id="myForm">
+    <input name="Email" id="emailInput" type="email" placeholder="Email" required>
+    <input name="Name" id="nameInput" type="text" placeholder="Name" required>
+    <button type="button" onclick="submitForm()">Send</button>
   </form>
+
+  <script>
+    function submitForm() {
+      var form = document.getElementById("myForm");
+      var formData = new FormData(form);
+
+      fetch("https://script.google.com/macros/s/AKfycbzQv6JBG0gflVHHzT0cFV6VEHiwc3lPoT0ddrioQRgYkzaPcyIPng_HiPQGBfkHtR7e/exec", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          // Handle successful form submission here (e.g., display a success message)
+          console.log("Form submitted successfully!");
+          // Optionally, you can redirect the user to another page after successful submission
+          // window.location.href = "success.html";
+        } else {
+          // Handle form submission failure here (e.g., display an error message)
+          console.error("Form submission failed!");
+        }
+      })
+      .catch(error => {
+        // Handle any network errors here
+        console.error("Network error:", error);
+      });
+    }
+  </script>
 </body>
 </html>
