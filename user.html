@@ -17,25 +17,22 @@
       var form = document.getElementById("myForm");
       var formData = new FormData(form);
 
-      fetch("https://script.google.com/macros/s/AKfycbzQv6JBG0gflVHHzT0cFV6VEHiwc3lPoT0ddrioQRgYkzaPcyIPng_HiPQGBfkHtR7e/exec", {
-        method: "POST",
-        body: formData
-      })
-      .then(response => {
-        if (response.ok) {
-          // Handle successful form submission here (e.g., display a success message)
-          console.log("Form submitted successfully!");
-          // Optionally, you can redirect the user to another page after successful submission
-          // window.location.href = "success.html";
-        } else {
-          // Handle form submission failure here (e.g., display an error message)
-          console.error("Form submission failed!");
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://script.google.com/macros/s/AKfycbzQv6JBG0gflVHHzT0cFV6VEHiwc3lPoT0ddrioQRgYkzaPcyIPng_HiPQGBfkHtR7e/exec", true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            // Handle successful form submission here (e.g., display a success message)
+            console.log("Form submitted successfully!");
+            // Optionally, you can redirect the user to another page after successful submission
+            // window.location.href = "success.html";
+          } else {
+            // Handle form submission failure here (e.g., display an error message)
+            console.error("Form submission failed!");
+          }
         }
-      })
-      .catch(error => {
-        // Handle any network errors here
-        console.error("Network error:", error);
-      });
+      };
+      xhr.send(formData);
     }
   </script>
 </body>
