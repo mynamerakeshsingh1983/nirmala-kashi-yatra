@@ -30,6 +30,10 @@
       button:hover {
         background-color: #45a049;
       }
+      .success-message {
+        color: green;
+        font-weight: bold;
+      }
     </style>
 </head>
 <body>
@@ -46,6 +50,8 @@
     <button type="button" onclick="submitForm()">Send</button>
   </form>
 
+  <div id="successMessage" class="success-message" style="display: none;">Form submitted successfully!</div>
+
   <script>
     function submitForm() {
       var form = document.getElementById("myForm");
@@ -56,8 +62,8 @@
       xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status === 200) {
-            // Handle successful form submission here (e.g., display a success message)
-            console.log("Form submitted successfully!");
+            // Display success message
+            document.getElementById("successMessage").style.display = "block";
             // Optionally, you can redirect the user to another page after successful submission
             // window.location.href = "success.html";
           } else {
