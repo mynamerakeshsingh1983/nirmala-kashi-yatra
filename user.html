@@ -64,8 +64,12 @@
           if (xhr.status === 200) {
             // Display success message
             document.getElementById("successMessage").style.display = "block";
-            // Optionally, you can redirect the user to another page after successful submission
-            // window.location.href = "success.html";
+            // Clear form fields
+            form.reset();
+            // Hide success message after 3 seconds
+            setTimeout(function() {
+              document.getElementById("successMessage").style.display = "none";
+            }, 3000);
           } else {
             // Handle form submission failure here (e.g., display an error message)
             console.error("Form submission failed!");
